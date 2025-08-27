@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details</title>
+</head>
+<body>
+    <h3>Listing details</h3>
+    <ul>
+        <li><%=listing.title%></li>
+        <li><%=listing.description%></li>
+        <li>&#8377; <%=listing.price.toLocaleString("en-IN")%></li>
+        <li><%=listing.location%></li>
+        <li><%=listing.country%></li>
+        <br><br>
+        <a href="/listings"><button>Go to Home</button></a>
+        <a href="/listings/<%=listing._id%>/edit" style="text-decoration: none;
+          color: Brown;
+      ">edit the listing</a>
+      <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+          <button>Delete this Listing</button>
+      </form>
+    </ul>
+</body>
+</html>
