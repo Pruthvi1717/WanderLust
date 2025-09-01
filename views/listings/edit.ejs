@@ -2,38 +2,59 @@
 <body>
     <br>
     <div class="row">
-     <div class="col-8 offset-2">
-    
-    <h1>Edit Listing</h1>
-    <form method="post" action="/listings/<%=listing._id%>?_method=PATCH">
-        <div class="mb-3">
-            <label for="title"class="form-label">Title</label>
-           <input type="text" name="title" placeholder="Enter the title" value="<%=listing.title%>" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-           <textarea name="description" placeholder="Enter the description" class="form-control"><%=listing.description%></textarea>
-        </div>
-        <div class="mb3">
-            <label for="image" class="form-label">Image</label>
-           <input type="text" name="image" placeholder="Enter the url" value="<%=listing.image%>" class="form-control">
-        </div>
-         <div class="mb-3 col-4">
-            <label for="price" class="form-label">Price</label>
-            <input type="Number" name="price" placeholder="Enter Price" value="<%=listing.price%>" class="form-control">
-         </div>
-        <div class="mb-3 col-8">
-              <label for="country" class="form-label">Country</label>
-             <input type="text" name="country" placeholder="Enter Country Name" value="<%=listing.country%>" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
-             <input type="text" name="location" placeholder="Enter location" value="<%=listing.location%>" class="form-control">
-        </div>
-        <button class="btn btn-dark edit-btn">Edit</button>
-        <br><br>
-    </form>
+        <div class="col-8 offset-2">
+
+            <h1>Edit Listing</h1>
+            <form method="post" action="/listings/<%= listing._id %>?_method=PATCH" class="needs-validation" novalidate>
+                
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" placeholder="Enter the title" value="<%= listing.title %>" class="form-control" required>
+                    <div class="valid-feedback">Title looks good</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" placeholder="Enter the description" class="form-control"><%= listing.description %></textarea>
+                    <div class="invalid-feedback">Please enter a short description</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="text" name="listing[image]" placeholder="Enter the url" value="<%= listing.image %>" class="form-control">
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="listing[price]" placeholder="Enter Price" value="<%= listing.price %>" class="form-control" required>
+                        <div class="invalid-feedback">Please enter a valid price</div>
+                    </div>
+
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="listing[country]" placeholder="Enter Country Name" value="<%= listing.country %>" class="form-control" required>
+                        <div class="invalid-feedback">Please enter a valid Country</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" placeholder="Enter location" value="<%= listing.location %>" class="form-control" required>
+                </div>
+
+                <button class="btn btn-dark edit-btn">Save Changes</button>
+                <br><br>
+            </form>
         </div>
     </div>
+
+    <script src="/js/script.js"></script>
 </body>
 
+<style>
+    .edit-btn {
+        background-color: #fe424d;
+        border: none;
+    }
+</style>
