@@ -27,6 +27,7 @@ router.post("/", validatereview, wrapAsync(async (req, res) => {
   await newReview.save();
   listing.reviews.push(newReview._id); // push only _id if ref in schema
   await listing.save();
+  req.flash("success","New Review Created!");
   res.redirect(`/listings/${listing._id}`);
 }));
 
@@ -37,6 +38,7 @@ router.delete("/:reviewId", wrapAsync(async(req,res)=>{
      let result=await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId} }) //also removes from the Listing
      await Review.findByIdAndDelete(reviewId)
      console.log(result);
+      req.flash("success","Review deleted!");
      res.redirect(`/listings/${id}`);
      
 }))
